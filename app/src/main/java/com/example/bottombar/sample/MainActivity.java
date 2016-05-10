@@ -21,8 +21,11 @@ public class MainActivity extends AppCompatActivity {
     mMessageView = (TextView) findViewById(R.id.messageView);
 
     mBottomBar = BottomBar.attach(this, savedInstanceState);
-    mBottomBar.setMaxFixedTabs(4);
-    mBottomBar.withItemsWeight(true);
+    mBottomBar.useFixedMode();
+    mBottomBar.setActiveTabColor("#FFFFFF");
+    mBottomBar.setInActiveTabColor("#7ec699");
+    mBottomBar.setBottomBarBackground(android.R.color.black);
+    mBottomBar.useItemsWeight();
     mBottomBar.setItemsFromMenu(R.menu.bottombar_menu, new OnMenuTabClickListener() {
       @Override public void onMenuTabSelected(@IdRes int menuItemId) {
         mMessageView.setText(getMessage(menuItemId, false));

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.MenuRes;
 import android.support.annotation.StyleRes;
@@ -130,6 +131,7 @@ public class BottomBar extends FrameLayout
 
   private int mMaxFixedTabCount = 3;
   private boolean mWithItemWidth;
+  private int mBottomBarBackgroundColor;
 
   /**
    * Bind the BottomBar to your Activity, and inflate your layout here.
@@ -897,6 +899,10 @@ public class BottomBar extends FrameLayout
     mBackgroundView = rootView.findViewById(R.id.bb_bottom_bar_background_view);
     mBackgroundOverlay = rootView.findViewById(R.id.bb_bottom_bar_background_overlay);
 
+    if(mBottomBarBackgroundColor != 0) {
+      mBackgroundView.setBackgroundColor(mBottomBarBackgroundColor);
+    }
+
     if (mIsShy && mIgnoreTabletLayout) {
       mPendingUserContentView = null;
     }
@@ -1639,7 +1645,15 @@ public class BottomBar extends FrameLayout
     }
   }
 
-  public void withItemsWeight(boolean withItemWidth) {
-    mWithItemWidth = withItemWidth;
+  public void useItemsWeight() {
+    mWithItemWidth = true;
+  }
+
+  public void setInActiveTabColor(String inActiveTabColor) {
+    mInActiveColor = Color.parseColor(inActiveTabColor);
+  }
+
+  public void setBottomBarBackground(@ColorRes int bgColor) {
+    mBottomBarBackgroundColor = ContextCompat.getColor(mContext, bgColor);
   }
 }
