@@ -122,6 +122,7 @@ public class BottomBar extends FrameLayout
   private boolean mDrawBehindNavBar = true;
   private boolean mUseTopOffset = true;
   private boolean mUseOnlyStatusBarOffset;
+  private boolean mUseStartListener = true;
 
   private int mPendingTextAppearance = -1;
   private Typeface mPendingTypeface;
@@ -338,7 +339,7 @@ public class BottomBar extends FrameLayout
     mMenuListener = listener;
     updateItems(mItems);
 
-    if (mItems != null && mItems.length > 0 && mItems instanceof BottomBarTab[]) {
+    if (mItems != null && mItems.length > 0 && mItems instanceof BottomBarTab[] && mUseStartListener) {
       listener.onMenuTabSelected(((BottomBarTab) mItems[mCurrentTabPosition]).id);
     }
   }
@@ -1655,5 +1656,9 @@ public class BottomBar extends FrameLayout
 
   public void setBottomBarBackground(@ColorRes int bgColor) {
     mBottomBarBackgroundColor = ContextCompat.getColor(mContext, bgColor);
+  }
+
+  public void setUseStartListener() {
+    mUseStartListener = false;
   }
 }

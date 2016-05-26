@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     mBottomBar.setInActiveTabColor("#7ec699");
     mBottomBar.setBottomBarBackground(android.R.color.black);
     mBottomBar.useItemsWeight();
+    mBottomBar.setUseStartListener();
     mBottomBar.setItemsFromMenu(R.menu.bottombar_menu, new OnMenuTabClickListener() {
       @Override public void onMenuTabSelected(@IdRes int menuItemId) {
         mMessageView.setText(getMessage(menuItemId, false));
